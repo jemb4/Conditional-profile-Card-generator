@@ -33,14 +33,42 @@ function render(variables = {}) {
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>${variables.name} ${variables.lastname}</h1>
-          <h2>${variables.role}</h2>
-          <h3>${variables.city} ${variables.country}</h3>
+          <h1>
+            ${
+              variables.name == null && variables.lastname == null
+                ? "name"
+                : variables.name == null && variables.lastname != null
+                ? " "
+                : variables.name
+            } 
+            ${variables.lastname != null ? variables.lastname : " "}
+          </h1>
+          <h2>
+            ${variables.role != null ? variables.role : "role"}
+          </h2>
+          <h3>
+            ${
+              variables.city == null && variables.country == null
+                ? "address"
+                : variables.city == null && variables.country != null
+                ? " "
+                : variables.city
+            } 
+            ${variables.country != null ? variables.country : " "}
+          </h3>
           <ul class="${variables.socialMediaPosition}">
-            <li><a href="https://twitter.com/${variables.twitter}"><i class="fa-brands fa-twitter"></i></a></li>
-            <li><a href="https://github.com/${variables.github}"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/${variables.linkedin}"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/${variables.instagram}"><i class="fa-brands fa-instagram"></i></a></li>
+            <li><a href="https://twitter.com/${
+              variables.twitter
+            }"><i class="fa-brands fa-twitter"></i></a></li>
+            <li><a href="https://github.com/${
+              variables.github
+            }"><i class="fab fa-github"></i></a></li>
+            <li><a href="https://linkedin.com/${
+              variables.linkedin
+            }"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://instagram.com/${
+              variables.instagram
+            }"><i class="fa-brands fa-instagram"></i></a></li>
           </ul>
         </div>
     `;
@@ -64,11 +92,11 @@ window.onload = function() {
     github: "jemb4",
     linkedin: null,
     instagram: null,
-    name: "name",
-    lastname: "",
-    role: "role",
-    country: "address",
-    city: ""
+    name: null,
+    lastname: null,
+    role: null,
+    country: null,
+    city: null
   };
   render(window.variables); //render the card for the first time
 
